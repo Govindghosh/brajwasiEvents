@@ -282,7 +282,28 @@ img {
   align-items: center;
   gap: 12px;
   flex: 0 0 auto;
+  text-decoration: none;
 }
+
+.brand__logo-img {
+  width: auto;
+  height: 46px;
+  max-height: 50px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.brand:hover .brand__logo-img {
+  transform: scale(1.02);
+  opacity: 0.92;
+}
+
+.brand--footer .brand__logo-img {
+  height: 52px;
+  max-height: 56px;
+}
+
 
 .brand__mark {
   display: grid;
@@ -2636,6 +2657,11 @@ img {
     width: min(calc(100% - 32px), var(--container));
   }
 
+  .brand__logo-img {
+    height: 38px;
+    max-height: 40px;
+  }
+
   .section {
     padding: 60px 0;
   }
@@ -3060,6 +3086,11 @@ img {
   .site-header__inner {
     min-height: 64px;
     gap: 12px;
+  }
+
+  .brand__logo-img {
+    height: 32px;
+    max-height: 34px;
   }
 
   .brand__mark {
