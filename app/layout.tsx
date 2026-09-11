@@ -4,6 +4,9 @@ import { site } from "@/data/site";
 import { localBusinessSchema, jsonLd } from "@/lib/schema";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { LeadContactModal } from "@/components/lead-contact-modal";
+import { CookieConsent } from "@/components/cookie-consent";
+import { FloatingContactWidget } from "@/components/floating-contact-widget";
 import "./globals.css";
 
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
@@ -21,5 +24,17 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en-IN"><body className={`${dmSans.variable} ${cormorant.variable}`}><script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(localBusinessSchema())} /><SiteHeader /><main>{children}</main><SiteFooter /></body></html>;
+  return (
+    <html lang="en-IN">
+      <body className={`${dmSans.variable} ${cormorant.variable}`}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(localBusinessSchema())} />
+        <LeadContactModal />
+        <SiteHeader />
+        <main>{children}</main>
+        <SiteFooter />
+        <CookieConsent />
+        <FloatingContactWidget />
+      </body>
+    </html>
+  );
 }
