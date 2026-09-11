@@ -20,7 +20,15 @@ export const metadata: Metadata = {
   alternates: { canonical: site.url },
   robots: { index: true, follow: true },
   openGraph: { title: "Brajwasi Events | Wedding Decoration & Event Management", description: site.description, url: site.url, siteName: site.name, type: "website", locale: "en_IN" },
-  twitter: { card: "summary_large_image", title: "Brajwasi Events", description: site.description }
+  twitter: { card: "summary_large_image", title: "Brajwasi Events", description: site.description },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+      { url: "/icon.svg", type: "image/svg+xml" }
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }]
+  }
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
