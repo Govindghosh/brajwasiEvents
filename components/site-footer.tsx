@@ -49,7 +49,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="container footer-bottom">
-        <span>© {new Date().getFullYear()} {site.name}. All rights reserved.</span>
+        <span suppressHydrationWarning>© {new Date().getFullYear()} {site.name}. All rights reserved.</span>
         <span>Vrindavan • Mathura • Agra • Delhi • Noida • India • International</span>
       </div>
     </footer>

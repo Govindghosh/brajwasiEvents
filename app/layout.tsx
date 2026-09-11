@@ -33,8 +33,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-IN">
-      <body className={`${dmSans.variable} ${cormorant.variable}`}>
+    <html lang="en-IN" suppressHydrationWarning>
+      <body
+        className={`${dmSans.variable} ${cormorant.variable}`}
+        suppressHydrationWarning
+      >
         <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(localBusinessSchema())} />
         <LeadContactModal />
         <SiteHeader />
@@ -46,3 +49,4 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     </html>
   );
 }
+
