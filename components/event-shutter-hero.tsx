@@ -173,7 +173,12 @@ export function EventShutterHero() {
   const currentScene = HERO_SCENES[activeIndex];
 
   return (
-    <section className="event-hero" ref={containerRef} aria-label="Brajwasi Events Aesthetic Portfolio">
+    <section className="event-hero cine-reticle-wrap" ref={containerRef} aria-label="Brajwasi Events Aesthetic Portfolio">
+      <div className="cine-corner cine-corner--tl" aria-hidden="true" />
+      <div className="cine-corner cine-corner--tr" aria-hidden="true" />
+      <div className="cine-corner cine-corner--bl" aria-hidden="true" />
+      <div className="cine-corner cine-corner--br" aria-hidden="true" />
+
       <div className="event-hero__ambient event-hero__ambient--primary" />
       <div className="event-hero__ambient event-hero__ambient--secondary" />
 
@@ -294,14 +299,15 @@ export function EventShutterHero() {
               >
                 <defs>
                   <linearGradient id="bladeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#EEEEEE" />
-                    <stop offset="50%" stopColor="#EAE2D6" />
-                    <stop offset="100%" stopColor="#8B9A6E" />
+                    <stop offset="0%" stopColor="#FFF4BF" />
+                    <stop offset="35%" stopColor="#FFBEFB" />
+                    <stop offset="70%" stopColor="#DC95FF" />
+                    <stop offset="100%" stopColor="#8C56D4" />
                   </linearGradient>
                   <linearGradient id="petalEdge" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#EEEEEE" />
-                    <stop offset="50%" stopColor="#8B9A6E" />
-                    <stop offset="100%" stopColor="#8B9A6E" />
+                    <stop offset="0%" stopColor="#FFBEFB" />
+                    <stop offset="50%" stopColor="#DC95FF" />
+                    <stop offset="100%" stopColor="#8C56D4" />
                   </linearGradient>
                 </defs>
                 <g ref={bladesRef} className="shutter-blades-group">

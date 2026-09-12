@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, MapPin, Phone } from "lucide-react";
 import { site } from "@/data/site";
+import { LiveTimeTicker } from "./live-time-ticker";
 
 export function SiteFooter() {
   return (
@@ -15,7 +16,7 @@ export function SiteFooter() {
           >
             <Image
               src="/logo.png"
-              alt="Braj Event Wale"
+              alt="Brajwasi Events"
               width={160}
               height={55}
               className="brand__logo-img"
@@ -50,7 +51,10 @@ export function SiteFooter() {
       </div>
       <div className="container footer-bottom">
         <span suppressHydrationWarning>© {new Date().getFullYear()} {site.name}. All rights reserved.</span>
-        <span>Vrindavan • Mathura • Agra • Delhi • Noida • India • International</span>
+        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+          <span>Vrindavan • Mathura • Agra • Delhi • Noida • Pan-India</span>
+          <LiveTimeTicker prefix="IST" />
+        </div>
       </div>
     </footer>
   );
