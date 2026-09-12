@@ -62,10 +62,6 @@ export function SiteHeader() {
                 className="brand__logo-img"
               />
             </Link>
-            <div className="cine-rec-pill" title="Live Event Production Status">
-              <span className="cine-rec-dot" aria-hidden="true" />
-              <span>ON SET</span>
-            </div>
           </div>
 
           {/* Desktop Navigation */}
