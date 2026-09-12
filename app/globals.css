@@ -1,5 +1,5 @@
 :root {
-  --c-butter-cream: #FFF4BF;
+  --c-smoke-white: #F5F5F5;
   --c-soft-orchid: #FFBEFB;
   --c-vibrant-lilac: #DC95FF;
   --c-royal-violet: #8C56D4;
@@ -9,22 +9,22 @@
   --c-primary: var(--c-royal-violet);
   --c-deep: var(--c-midnight-violet);
   --c-secondary: var(--c-vibrant-lilac);
-  --c-surface: var(--c-butter-cream);
-  --c-canvas: var(--c-butter-cream);
+  --c-surface: var(--c-smoke-white);
+  --c-canvas: var(--c-smoke-white);
 
   --c-sage: var(--c-royal-violet);
   --c-sage-light: var(--c-soft-orchid);
-  --c-cream: var(--c-butter-cream);
+  --c-cream: var(--c-smoke-white);
   --c-sand: var(--c-soft-orchid);
-  --c-grey: var(--c-butter-cream);
+  --c-grey: var(--c-smoke-white);
 
   --ink: var(--c-midnight-violet);
   --ink-soft: var(--c-midnight-soft);
   --ink-muted: var(--c-royal-violet);
-  --ink-light: var(--c-butter-cream);
+  --ink-light: var(--c-smoke-white);
 
-  --canvas: var(--c-butter-cream);
-  --surface: var(--c-butter-cream);
+  --canvas: var(--c-smoke-white);
+  --surface: var(--c-smoke-white);
   --surface-alt: var(--c-soft-orchid);
   --surface-sage: var(--c-royal-violet);
 
@@ -176,7 +176,7 @@ img {
   padding: 0 24px;
   border: 1px solid var(--c-primary);
   border-radius: 999px;
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   background: var(--c-primary);
   box-shadow: 0 6px 18px rgba(140, 86, 212, 0.28);
   font-size: 0.86rem;
@@ -191,7 +191,7 @@ img {
 .cute-button:hover {
   transform: translateY(-2px);
   background: #592699;
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   border-color: #592699;
 }
 
@@ -233,12 +233,12 @@ img {
 .gold-button--outline:hover,
 .cute-button--outline:hover {
   background: var(--c-primary);
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   border-color: var(--c-primary);
 }
 
 .button--light {
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   background: var(--c-primary);
   border: 1px solid var(--c-primary);
   font-weight: 800;
@@ -246,7 +246,7 @@ img {
 
 .button--light:hover {
   background: #592699;
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   border-color: #592699;
 }
 
@@ -329,7 +329,7 @@ img {
   place-items: center;
   border: 1px solid var(--c-primary);
   border-radius: 12px;
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   background: var(--c-primary);
   font-size: 1.05rem;
   font-weight: 900;
@@ -778,7 +778,7 @@ img {
 
 .scene-pill--active {
   border-color: var(--c-primary);
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   background: var(--c-primary);
 }
 
@@ -825,7 +825,7 @@ img {
   padding: 4px 10px;
   border-radius: 6px;
   background: var(--c-primary);
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.12em;
@@ -1003,7 +1003,7 @@ img {
   position: absolute;
   inset: 0;
   z-index: 7;
-  background: radial-gradient(circle, #FFF4BF 0%, #DC95FF 50%, transparent 85%);
+  background: radial-gradient(circle, var(--c-smoke-white) 0%, #DC95FF 50%, transparent 85%);
   opacity: 0;
   pointer-events: none;
 }
@@ -1028,7 +1028,7 @@ img {
 
 .viewfinder-footer__cat {
   margin: 0 0 6px;
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.2em;
@@ -1048,7 +1048,7 @@ img {
 
 .viewfinder-footer__sub {
   margin: 0;
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   font-size: 0.92rem;
   line-height: 1.6;
   font-weight: 600;
@@ -1074,9 +1074,9 @@ img {
   gap: 10px;
   padding: 11px 22px;
   border-radius: 999px;
-  border: 1px solid #FFF4BF;
+  border: 1px solid var(--c-smoke-white);
   background: var(--c-primary);
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   font-size: 0.8rem;
   font-weight: 900;
   letter-spacing: 0.08em;
@@ -1091,8 +1091,8 @@ img {
 
 .shutter-trigger-btn:hover {
   background: #592699;
-  color: #FFF4BF;
-  border-color: #FFF4BF;
+  color: var(--c-smoke-white);
+  border-color: var(--c-smoke-white);
 }
 
 .shutter-trigger-btn__ring {
@@ -1227,7 +1227,7 @@ img {
   place-items: center;
   border: 1.5px solid var(--line-strong);
   border-radius: 12px;
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   background: var(--c-primary);
 }
 
@@ -1863,7 +1863,7 @@ img {
   height: 32px;
   place-items: center;
   border-radius: 50%;
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   background: var(--c-primary);
 }
 
@@ -2018,12 +2018,12 @@ img {
   height: 44px;
   place-items: center;
   border-radius: 12px;
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   background: var(--c-primary);
 }
 
 .contact-card--primary .contact-action__icon {
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   background: var(--c-primary);
 }
 
@@ -2139,7 +2139,7 @@ img {
 }
 
 .site-footer .brand__mark {
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   background: var(--c-primary);
 }
 
@@ -2338,14 +2338,14 @@ img {
 
 .newgen-chip--active {
   background: var(--c-primary);
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   border-color: var(--c-primary);
   font-weight: 800;
   box-shadow: 0 4px 14px rgba(140, 86, 212, 0.25);
 }
 
 .newgen-chip__check {
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
 }
 
 /* New-Gen Inputs & Custom Select */
@@ -2355,7 +2355,7 @@ img {
   padding: 0 16px;
   border-radius: 12px;
   border: 1.5px solid var(--line-strong);
-  background: #FFF4BF;
+  background: var(--c-smoke-white);
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: 0.94rem;
@@ -2385,7 +2385,7 @@ img {
   padding: 0 16px;
   border-radius: 12px;
   border: 1.5px solid var(--line-strong);
-  background: #FFF4BF;
+  background: var(--c-smoke-white);
   color: var(--ink);
   display: flex;
   align-items: center;
@@ -2429,7 +2429,7 @@ img {
   right: 0;
   z-index: 50;
   border-radius: 14px;
-  background: #FFF4BF;
+  background: var(--c-smoke-white);
   border: 2px solid var(--c-primary);
   box-shadow: 0 16px 40px rgba(140, 86, 212, 0.18);
   padding: 8px;
@@ -2461,7 +2461,7 @@ img {
 
 .newgen-select-option--active {
   background: var(--c-primary);
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   font-weight: 800;
 }
 
@@ -2493,7 +2493,7 @@ img {
   margin-top: 8px;
   min-height: 54px;
   background: var(--c-primary);
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   font-size: 0.94rem;
   font-weight: 800;
   letter-spacing: 0.03em;
@@ -2504,7 +2504,7 @@ img {
 .lead-modal-submit:hover {
   background: #592699;
   border-color: #592699;
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
 }
 
 .lead-modal-footer {
@@ -2636,7 +2636,7 @@ img {
   border-radius: 999px;
   border: 1px solid var(--c-primary);
   background: var(--c-primary);
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   box-shadow: 0 8px 26px rgba(140, 86, 212, 0.35);
   cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease;
@@ -2645,13 +2645,13 @@ img {
 .floating-ctc__toggle:hover {
   transform: translateY(-3px) scale(1.03);
   background: #592699;
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   border-color: #592699;
 }
 
 .floating-ctc__toggle--active {
   background: #592699;
-  color: #FFF4BF;
+  color: var(--c-smoke-white);
   border-color: #592699;
 }
 
@@ -3364,8 +3364,8 @@ img {
 
 /* ==========================================================================
    DG CINEMA LUXURY ARCHITECTURE & TELEMETRY SUBSYSTEM
-   Applied 4-Color Palette:
-   - #FFF4BF (Butter Cream Canvas)
+   Applied Color Palette:
+   - #F5F5F5 (Smoke White Canvas & Surfaces)
    - #FFBEFB (Soft Orchid Accents & Hover Fills)
    - #DC95FF (Vibrant Lilac Outlines & Optical Flares)
    - #8C56D4 (Royal Violet Telemetry & Action Triggers)
@@ -3427,7 +3427,7 @@ img {
   color: var(--ink-soft);
   text-transform: uppercase;
   border-top: 1px solid var(--c-vibrant-lilac);
-  background: var(--c-butter-cream);
+  background: var(--c-smoke-white);
 }
 
 .cine-meter {
@@ -3489,7 +3489,7 @@ img {
   position: relative;
   overflow: hidden;
   padding: 40px 0;
-  background: var(--c-butter-cream);
+  background: var(--c-smoke-white);
 }
 
 .cine-lens-curve-top {
@@ -3498,7 +3498,7 @@ img {
   left: -8%;
   width: 116%;
   height: 90px;
-  background: var(--c-butter-cream);
+  background: var(--c-smoke-white);
   border-radius: 50%;
   z-index: 10;
   pointer-events: none;
@@ -3511,7 +3511,7 @@ img {
   left: -8%;
   width: 116%;
   height: 90px;
-  background: var(--c-butter-cream);
+  background: var(--c-smoke-white);
   border-radius: 50%;
   z-index: 10;
   pointer-events: none;
@@ -3524,7 +3524,7 @@ img {
   bottom: 0;
   left: 0;
   width: 110px;
-  background: linear-gradient(90deg, rgba(220, 149, 255, 0.6) 0%, rgba(255, 244, 191, 0) 100%);
+  background: linear-gradient(90deg, rgba(220, 149, 255, 0.6) 0%, rgba(245, 245, 245, 0) 100%);
   pointer-events: none;
   z-index: 11;
 }
@@ -3535,7 +3535,7 @@ img {
   bottom: 0;
   right: 0;
   width: 110px;
-  background: linear-gradient(270deg, rgba(220, 149, 255, 0.6) 0%, rgba(255, 244, 191, 0) 100%);
+  background: linear-gradient(270deg, rgba(220, 149, 255, 0.6) 0%, rgba(245, 245, 245, 0) 100%);
   pointer-events: none;
   z-index: 11;
 }
@@ -3602,7 +3602,7 @@ img {
   flex-direction: column;
   justify-content: flex-end;
   padding: 20px;
-  color: var(--c-butter-cream);
+  color: var(--c-smoke-white);
   opacity: 0.95;
 }
 
@@ -3619,14 +3619,14 @@ img {
   font-size: 1.05rem;
   font-weight: 700;
   margin: 0;
-  color: var(--c-butter-cream);
+  color: var(--c-smoke-white);
   line-height: 1.25;
 }
 
 /* 4. Kinetic Editorial Typography with Inline Photo Pills */
 .cine-editorial-section {
   padding: 100px 0;
-  background: var(--c-butter-cream);
+  background: var(--c-smoke-white);
   border-block: 1.5px solid var(--c-vibrant-lilac);
   text-align: center;
   position: relative;
@@ -3780,7 +3780,7 @@ img {
 /* 6. Signature Project Spotlight (Scammer Style) */
 .cine-spotlight-section {
   padding: 100px 0;
-  background: var(--c-butter-cream);
+  background: var(--c-smoke-white);
   position: relative;
   overflow: hidden;
 }
@@ -3840,7 +3840,7 @@ img {
 /* 7. Industrial Cine Bento Grid ("Beyond Event Production") */
 .cine-bento-section {
   padding: 100px 0;
-  background: var(--c-butter-cream);
+  background: var(--c-smoke-white);
 }
 
 .cine-bento-grid {
@@ -3851,7 +3851,7 @@ img {
 }
 
 .cine-bento-card {
-  background: var(--c-butter-cream);
+  background: var(--c-smoke-white);
   border: 1.5px solid var(--c-vibrant-lilac);
   border-radius: 20px;
   padding: 38px 30px;
@@ -3873,7 +3873,7 @@ img {
   height: 54px;
   border-radius: 14px;
   background: var(--c-royal-violet);
-  color: var(--c-butter-cream);
+  color: var(--c-smoke-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3914,7 +3914,7 @@ img {
 /* 8. Minimalist Precision Floating Line Form ("Drop Us A Line") */
 .cine-contact-section {
   padding: 100px 0;
-  background: var(--c-butter-cream);
+  background: var(--c-smoke-white);
   border-top: 1.5px solid var(--c-vibrant-lilac);
 }
 
@@ -3926,7 +3926,7 @@ img {
 }
 
 .cine-contact-card {
-  background: var(--c-butter-cream);
+  background: var(--c-smoke-white);
   border: 1.5px solid var(--c-vibrant-lilac);
   border-radius: 24px;
   padding: 44px 38px;
@@ -3978,7 +3978,7 @@ img {
 
 .cine-pill-action {
   background: var(--c-royal-violet);
-  color: var(--c-butter-cream);
+  color: var(--c-smoke-white);
   border: 2px solid var(--c-royal-violet);
   padding: 16px 36px;
   border-radius: 9999px;
@@ -4029,26 +4029,194 @@ img {
 @media (max-width: 768px) {
   .cine-bento-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
+
   .cine-hud-bar {
     flex-direction: column;
     gap: 12px;
     align-items: center;
+    padding: 14px 18px;
   }
+
   .cine-focal-showcase {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 12;
+    cursor: pointer;
   }
+
   .cine-focal-card--left,
   .cine-focal-card--right {
     display: none;
   }
+
   .cine-focal-card--main {
     width: 95%;
     height: 95%;
+    border-radius: 16px;
+    box-shadow: 0 16px 40px rgba(33, 16, 58, 0.2);
   }
+
+  /* Mobile Tap for Blueprint Badge */
+  .cine-mobile-tap-badge {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    z-index: 12;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(33, 16, 58, 0.86);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--c-smoke-white);
+    border: 1.5px solid var(--c-vibrant-lilac);
+    border-radius: 9999px;
+    padding: 7px 16px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    animation: tapBadgeGlow 2.5s ease-in-out infinite;
+  }
+
+  @keyframes tapBadgeGlow {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    }
+    50% {
+      transform: scale(1.04);
+      box-shadow: 0 8px 24px rgba(140, 86, 212, 0.5);
+      border-color: var(--c-soft-orchid);
+    }
+  }
+
   .cine-corner {
     width: 18px;
     height: 18px;
+    border-width: 1.5px;
+  }
+
+  /* Mobile Bento Cards Touch Feedback */
+  .cine-bento-card {
+    padding: 28px 22px;
+    border-radius: 18px;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  /* Mobile 3D Fan-Out Stack for Philosophy Section */
+  .cine-cards-depth {
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 4 / 3;
+    margin: 0 auto 32px;
+  }
+
+  .cine-depth-card--back-2 {
+    transform: rotate(-6deg) translateX(-10px) scale(0.88);
+  }
+
+  .cine-depth-card--back-1 {
+    transform: rotate(4deg) translateX(8px) scale(0.93);
+  }
+
+  .cine-depth-card--front {
+    transform: scale(0.98);
+    box-shadow: 0 16px 36px rgba(33, 16, 58, 0.18);
+  }
+
+  /* Mobile Touch for Numbered Pillars */
+  .cine-pillar-block {
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    padding-bottom: 18px;
+  }
+
+  .cine-pillar-block:active {
+    transform: translateX(6px);
+    border-bottom-color: var(--c-royal-violet);
+  }
+
+  /* Mobile Editorial Inline Photo Pills Breathing Animation */
+  .cine-inline-pill {
+    animation: pillBreathe 3.5s ease-in-out infinite;
+  }
+
+  @keyframes pillBreathe {
+    0%, 100% {
+      transform: scale(1) translateY(-2px);
+    }
+    50% {
+      transform: scale(1.08) translateY(-2px);
+      box-shadow: 0 6px 20px rgba(140, 86, 212, 0.3);
+    }
+  }
+
+  /* Smooth Mobile Momentum Scrolling for Film Strip Track */
+  .cine-film-track-container {
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  /* Fluid Mobile Spacing for Sections */
+  .cine-editorial-section,
+  .cine-spotlight-section,
+  .cine-bento-section,
+  .cine-contact-section {
+    padding: 70px 0;
+  }
+}
+
+@media (min-width: 769px) {
+  .cine-mobile-tap-badge {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   MOBILE TOUCH ACTIVE HAPTIC FEEDBACK & TAP HIGHLIGHT SUPPRESSION
+   ========================================================================== */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  button,
+  a,
+  .cute-button,
+  .scene-pill,
+  .cine-pill-action,
+  .shutter-trigger-btn,
+  .floating-ctc__toggle {
+    touch-action: manipulation;
+  }
+
+  button:active,
+  a:active,
+  .cute-button:active,
+  .scene-pill:active,
+  .cine-pill-action:active,
+  .shutter-trigger-btn:active {
+    transform: scale(0.96) !important;
+    transition: transform 0.12s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
+  }
+
+  .cine-bento-card:active {
+    transform: scale(0.98) !important;
+    border-color: var(--c-royal-violet) !important;
+    background: var(--c-soft-orchid) !important;
+    box-shadow: 0 12px 28px rgba(140, 86, 212, 0.16) !important;
+  }
+
+  .cine-focal-showcase:active {
+    transform: scale(0.985);
+    transition: transform 0.12s ease;
+  }
+
+  .location-card:active,
+  .gallery-tile:active {
+    transform: scale(0.975);
+    transition: transform 0.12s ease;
   }
 }
 

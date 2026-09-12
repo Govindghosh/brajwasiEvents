@@ -36,7 +36,7 @@ export const HERO_SCENES: readonly EventScene[] = [
   {
     id: "phool-bangla",
     title: "Vrindavan Phool Bangla & Mandir Art",
-    category: "Devotional Heritage",
+    category: "Phool Bangla",
     subtitle: "Traditional floral mansions hand-woven with fragrant rajnigandha, mogra, and sanctum jaalis.",
     location: "Gopeshwar Mahadev, Vrindavan",
     aperture: "f/1.8",
@@ -48,7 +48,7 @@ export const HERO_SCENES: readonly EventScene[] = [
   {
     id: "corporate",
     title: "Executive Summits & Brand Galas",
-    category: "Corporate Production",
+    category: "Corporate Event",
     subtitle: "Precision stage geometry, brand-aligned visual architecture, and flawless guest movement.",
     location: "Delhi • Noida • Gurugram",
     aperture: "f/2.8",
@@ -157,6 +157,28 @@ export function EventShutterHero() {
     triggerShutterAnimation(next);
   }, [activeIndex, triggerShutterAnimation]);
 
+  const goToPrevScene = useCallback(() => {
+    const prev = (activeIndex - 1 + HERO_SCENES.length) % HERO_SCENES.length;
+    triggerShutterAnimation(prev);
+  }, [activeIndex, triggerShutterAnimation]);
+
+  const touchStartXRef = useRef<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartXRef.current === null) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartXRef.current;
+    if (deltaX < -45) {
+      goToNextScene();
+    } else if (deltaX > 45) {
+      goToPrevScene();
+    }
+    touchStartXRef.current = null;
+  };
+
   const selectScene = (index: number) => {
     if (index === activeIndex || isTransitioning) return;
     triggerShutterAnimation(index);
@@ -236,7 +258,11 @@ export function EventShutterHero() {
           </div>
         </div>
 
-        <div className="event-hero__aperture-stage">
+        <div
+          className="event-hero__aperture-stage"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           <div className="lens-housing">
             <div className="lens-bezel">
               <div className="lens-bezel__ticks" />
@@ -299,7 +325,7 @@ export function EventShutterHero() {
               >
                 <defs>
                   <linearGradient id="bladeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#FFF4BF" />
+                    <stop offset="0%" stopColor="#F5F5F5" />
                     <stop offset="35%" stopColor="#FFBEFB" />
                     <stop offset="70%" stopColor="#DC95FF" />
                     <stop offset="100%" stopColor="#8C56D4" />

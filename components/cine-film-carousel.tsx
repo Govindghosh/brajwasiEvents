@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,7 +16,7 @@ const FILM_SLIDES: readonly FilmSlide[] = [
   {
     id: "reel-1",
     title: "Vrindavan Phool Bangla & Sanctum Art",
-    category: "Devotional Heritage",
+    category: "Phool Bangla",
     image: "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=85",
     href: "/services/phool-bangla-temple-decoration/"
   },
@@ -36,7 +37,7 @@ const FILM_SLIDES: readonly FilmSlide[] = [
   {
     id: "reel-4",
     title: "Executive Summits & Brand Architecture",
-    category: "Corporate Production",
+    category: "Corporate Event",
     image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=85",
     href: "/services/corporate-events/"
   },
@@ -76,6 +77,7 @@ function FilmSlideCard({ slide }: { slide: FilmSlide }) {
 }
 
 export function CineFilmCarousel() {
+  const [isPaused, setIsPaused] = useState(false);
   const slidesDuplicated = [...FILM_SLIDES, ...FILM_SLIDES];
 
   return (
@@ -84,8 +86,17 @@ export function CineFilmCarousel() {
       <div className="cine-flare-left" aria-hidden="true" />
       <div className="cine-flare-right" aria-hidden="true" />
 
-      <div className="cine-film-track-container">
-        <div className="cine-film-track">
+      <div
+        className="cine-film-track-container"
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => {
+          setTimeout(() => setIsPaused(false), 2400);
+        }}
+      >
+        <div
+          className="cine-film-track"
+          style={{ animationPlayState: isPaused ? "paused" : "running" }}
+        >
           {slidesDuplicated.map((slide, index) => (
             <FilmSlideCard key={`${slide.id}-${index}`} slide={slide} />
           ))}

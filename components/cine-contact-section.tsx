@@ -135,7 +135,7 @@ export function CineContactSection() {
                       style={{
                         cursor: "pointer",
                         background: form.occasionType === occ ? "var(--c-royal-violet)" : "var(--c-soft-orchid)",
-                        color: form.occasionType === occ ? "var(--c-butter-cream)" : "var(--c-royal-violet)"
+                        color: form.occasionType === occ ? "var(--c-smoke-white)" : "var(--c-royal-violet)"
                       }}
                     >
                       {occ}

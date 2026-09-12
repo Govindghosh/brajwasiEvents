@@ -91,7 +91,13 @@ export function CineProjectSpotlight() {
           </button>
         </div>
 
-        <div className="cine-focal-showcase">
+        <div
+          className="cine-focal-showcase"
+          onClick={() => setModalOpen(true)}
+          role="button"
+          tabIndex={0}
+          aria-label="Inspect Vrindavan Mahamandap blueprint details"
+        >
           <div className="cine-focal-card cine-focal-card--left" aria-hidden="true">
             <Image
               src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80"
@@ -109,6 +115,10 @@ export function CineProjectSpotlight() {
               sizes="70vw"
               priority
             />
+            <div className="cine-mobile-tap-badge">
+              <Sparkles size={13} aria-hidden="true" />
+              <span>Tap for Blueprint</span>
+            </div>
           </div>
 
           <div className="cine-focal-card cine-focal-card--right" aria-hidden="true">
