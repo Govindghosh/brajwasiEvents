@@ -50,7 +50,7 @@ html {
 
 body {
   margin: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
   color: var(--ink);
   background: var(--c-canvas);
   font-family: var(--font-sans);
@@ -654,12 +654,31 @@ img {
    HERO SECTION - CRISP READABLE TEXT
    ========================================================= */
 
+.event-hero-sticky-track {
+  position: relative;
+  height: 250vh;
+  background: var(--c-canvas);
+}
+
+.event-hero-sticky-viewport {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--c-canvas);
+  padding: 40px 0;
+}
+
 .event-hero {
   position: relative;
   overflow: hidden;
   min-height: calc(100vh - 78px);
   padding: 80px 0 110px;
-  background: var(--c-cream);
+  background: var(--c-canvas);
 }
 
 .event-hero__ambient {
@@ -4436,6 +4455,17 @@ img {
 
 /* Mobile Responsiveness for iPhone 14 Plus & All Phones */
 @media (max-width: 768px) {
+  .event-hero-sticky-track {
+    height: 230vh;
+  }
+
+  .event-hero-sticky-viewport {
+    height: 100vh;
+    height: 100dvh;
+    padding: 60px 0 20px;
+    align-items: center;
+  }
+
   .arcana-deck-stage {
     max-width: 100%;
     min-height: 440px;

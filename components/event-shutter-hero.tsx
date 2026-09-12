@@ -72,250 +72,259 @@ export const HERO_CARDS: readonly HeroCard[] = [
 
 export function EventShutterHero() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const touchStartXRef = useRef<number | null>(null);
-  const touchStartYRef = useRef<number | null>(null);
-  const lastScrollTimeRef = useRef<number>(0);
-  const deckRef = useRef<HTMLDivElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const isProgrammaticScrollRef = useRef(false);
+
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (isProgrammaticScrollRef.current) return;
+
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (trackRef.current) {
+            const rect = trackRef.current.getBoundingClientRect();
+            const totalScrollable = rect.height - window.innerHeight;
+            if (totalScrollable > 0) {
+              const scrolled = -rect.top;
+              const progress = Math.max(0, Math.min(1, scrolled / totalScrollable));
+              const mapped = Math.floor(progress * HERO_CARDS.length);
+              const cardIdx = Math.min(HERO_CARDS.length - 1, Math.max(0, mapped));
+              setActiveIndex(cardIdx);
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const scrollToCard = useCallback((index: number) => {
+    setActiveIndex(index);
+    if (trackRef.current) {
+      isProgrammaticScrollRef.current = true;
+      const rect = trackRef.current.getBoundingClientRect();
+      const currentScrollY = window.scrollY || window.pageYOffset;
+      const trackTop = currentScrollY + rect.top;
+      const totalScrollable = rect.height - window.innerHeight;
+
+      const segmentRatio = (index + 0.35) / HERO_CARDS.length;
+      const targetY = trackTop + segmentRatio * totalScrollable;
+
+      window.scrollTo({
+        top: Math.max(0, targetY),
+        behavior: "smooth"
+      });
+
+      setTimeout(() => {
+        isProgrammaticScrollRef.current = false;
+      }, 550);
+    }
+  }, []);
 
   const goToNext = useCallback(() => {
-    setActiveIndex((prev) => (prev + 1) % HERO_CARDS.length);
-  }, []);
+    const next = (activeIndex + 1) % HERO_CARDS.length;
+    scrollToCard(next);
+  }, [activeIndex, scrollToCard]);
 
   const goToPrev = useCallback(() => {
-    setActiveIndex((prev) => (prev - 1 + HERO_CARDS.length) % HERO_CARDS.length);
-  }, []);
+    const prev = (activeIndex - 1 + HERO_CARDS.length) % HERO_CARDS.length;
+    scrollToCard(prev);
+  }, [activeIndex, scrollToCard]);
 
   const selectCard = (index: number) => {
-    setActiveIndex(index);
+    scrollToCard(index);
   };
-
-  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    const now = Date.now();
-    if (now - lastScrollTimeRef.current < 450) {
-      return;
-    }
-
-    if (e.deltaY > 25) {
-      if (activeIndex < HERO_CARDS.length - 1) {
-        e.preventDefault();
-        e.stopPropagation();
-        lastScrollTimeRef.current = now;
-        setActiveIndex((prev) => prev + 1);
-      }
-    } else if (e.deltaY < -25) {
-      if (activeIndex > 0) {
-        e.preventDefault();
-        e.stopPropagation();
-        lastScrollTimeRef.current = now;
-        setActiveIndex((prev) => prev - 1);
-      }
-    }
-  };
-
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    touchStartXRef.current = e.touches[0].clientX;
-    touchStartYRef.current = e.touches[0].clientY;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (touchStartXRef.current === null || touchStartYRef.current === null) return;
-    const deltaX = e.changedTouches[0].clientX - touchStartXRef.current;
-    const deltaY = e.changedTouches[0].clientY - touchStartYRef.current;
-
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 40) {
-      if (deltaX < 0) {
-        goToNext();
-      } else {
-        goToPrev();
-      }
-    }
-    touchStartXRef.current = null;
-    touchStartYRef.current = null;
-  };
-
-  const currentCard = HERO_CARDS[activeIndex];
 
   return (
-    <section
-      className="event-hero cine-reticle-wrap"
+    <div
+      className="event-hero-sticky-track"
+      ref={trackRef}
       aria-label="Brajwasi Events Signature Occasions Deck"
     >
-      <div className="cine-corner cine-corner--tl" aria-hidden="true" />
-      <div className="cine-corner cine-corner--tr" aria-hidden="true" />
-      <div className="cine-corner cine-corner--bl" aria-hidden="true" />
-      <div className="cine-corner cine-corner--br" aria-hidden="true" />
+      <div className="event-hero-sticky-viewport cine-reticle-wrap">
+        <div className="cine-corner cine-corner--tl" aria-hidden="true" />
+        <div className="cine-corner cine-corner--tr" aria-hidden="true" />
+        <div className="cine-corner cine-corner--bl" aria-hidden="true" />
+        <div className="cine-corner cine-corner--br" aria-hidden="true" />
 
-      <div className="event-hero__ambient event-hero__ambient--primary" />
-      <div className="event-hero__ambient event-hero__ambient--secondary" />
+        <div className="event-hero__ambient event-hero__ambient--primary" />
+        <div className="event-hero__ambient event-hero__ambient--secondary" />
 
-      <div className="container event-hero__container">
-        <div className="event-hero__content">
-          <div className="hero-badge">
-            <Heart size={14} className="hero-badge__icon" aria-hidden="true" />
-            <span>Curated Celebrations • Mandap Decor • Phool Bangla</span>
-          </div>
+        <div className="container event-hero__container">
+          <div className="event-hero__content">
+            <div className="hero-badge">
+              <Heart size={14} className="hero-badge__icon" aria-hidden="true" />
+              <span>Curated Celebrations • Mandap Decor • Phool Bangla</span>
+            </div>
 
-          <h1 className="event-hero__heading">
-            Grand celebrations,
-            <span className="event-hero__heading-accent"> captured with heart.</span>
-          </h1>
+            <h1 className="event-hero__heading">
+              Grand celebrations,
+              <span className="event-hero__heading-accent"> captured with heart.</span>
+            </h1>
 
-          <p className="event-hero__lead">
-            Brajwasi Events designs warm, unforgettable celebrations. From romantic wedding mandaps and authentic Vrindavan Phool Bangla to executive corporate galas and destination palace venues across India.
-          </p>
+            <p className="event-hero__lead">
+              Brajwasi Events designs warm, unforgettable celebrations. From romantic wedding mandaps and authentic Vrindavan Phool Bangla to executive corporate galas and destination palace venues across India.
+            </p>
 
-          <div className="event-hero__ctas">
-            <Link className="cute-button" href="/contact/">
-              <span>Plan Your Event</span>
-              <ArrowUpRight size={17} aria-hidden="true" />
-            </Link>
-            <a className="cute-button cute-button--outline" href={`tel:+91${site.phone}`}>
-              <Phone size={16} aria-hidden="true" />
-              <span>Direct Call</span>
-            </a>
-            <a
-              className="cute-button cute-button--ghost"
-              href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent("Hello Brajwasi Events, I want to discuss decor & event planning.")}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <MessageCircle size={16} aria-hidden="true" />
-              <span>WhatsApp Brief</span>
-            </a>
-          </div>
-
-          <div className="hero-scene-nav" role="tablist" aria-label="Event Occasions">
-            {HERO_CARDS.map((item, idx) => (
-              <button
-                key={item.id}
-                type="button"
-                role="tab"
-                aria-selected={idx === activeIndex}
-                className={`scene-pill ${idx === activeIndex ? "scene-pill--active" : ""}`}
-                onClick={() => selectCard(idx)}
+            <div className="event-hero__ctas">
+              <Link className="cute-button" href="/contact/">
+                <span>Plan Your Event</span>
+                <ArrowUpRight size={17} aria-hidden="true" />
+              </Link>
+              <a className="cute-button cute-button--outline" href={`tel:+91${site.phone}`}>
+                <Phone size={16} aria-hidden="true" />
+                <span>Direct Call</span>
+              </a>
+              <a
+                className="cute-button cute-button--ghost"
+                href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent("Hello Brajwasi Events, I want to discuss decor & event planning.")}`}
+                target="_blank"
+                rel="noreferrer"
               >
-                <span className="scene-pill__num">{item.index}</span>
-                <span className="scene-pill__name">{item.category}</span>
-              </button>
-            ))}
-          </div>
-        </div>
+                <MessageCircle size={16} aria-hidden="true" />
+                <span>WhatsApp Brief</span>
+              </a>
+            </div>
 
-        <div
-          className="arcana-deck-stage"
-          ref={deckRef}
-          onWheel={handleWheel}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          role="region"
-          aria-label="Arcana-Style 3D Wheel Showcase"
-        >
-          <div className="arcana-deck-fan">
-            {HERO_CARDS.map((card, idx) => {
-              const offset = idx - activeIndex;
-              const isActive = offset === 0;
-
-              return (
-                <div
-                  key={card.id}
-                  className={`arcana-card arcana-card--offset-${offset} ${isActive ? "arcana-card--active" : ""}`}
+            <div className="hero-scene-nav" role="tablist" aria-label="Event Occasions">
+              {HERO_CARDS.map((item, idx) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={idx === activeIndex}
+                  className={`scene-pill ${idx === activeIndex ? "scene-pill--active" : ""}`}
                   onClick={() => selectCard(idx)}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Select ${card.title}`}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      selectCard(idx);
-                    }
-                  }}
                 >
-                  <div className="arcana-card__inner">
-                    <div className="arcana-card__header">
-                      <div className="arcana-card__emblem-left" title={`Card ${card.index}`}>
-                        <span className="arcana-emblem-text">{card.index}</span>
-                      </div>
-                      <div className="arcana-card__gem-center">
-                        <Sparkles size={14} aria-hidden="true" />
-                      </div>
-                      <div className="arcana-card__emblem-right">
-                        <MapPin size={11} aria-hidden="true" />
-                        <span>{card.badgeText}</span>
-                      </div>
-                    </div>
+                  <span className="scene-pill__num">{item.index}</span>
+                  <span className="scene-pill__name">{item.category}</span>
+                </button>
+              ))}
+            </div>
+          </div>
 
-                    <div className="arcana-card__visual">
-                      <div className="arcana-card__halo" aria-hidden="true" />
-                      <div className="arcana-card__photo-frame">
-                        <Image
-                          src={card.image}
-                          alt={card.title}
-                          fill
-                          sizes="(max-width: 768px) 300px, 380px"
-                          priority={idx === 0}
-                          className="arcana-card__img"
-                        />
-                      </div>
-                      <div className="arcana-card__shine" aria-hidden="true" />
-                    </div>
+          <div
+            className="arcana-deck-stage"
+            role="region"
+            aria-label="Arcana-Style 3D Wheel Showcase"
+          >
+            <div className="arcana-deck-fan">
+              {HERO_CARDS.map((card, idx) => {
+                const offset = idx - activeIndex;
+                const isActive = offset === 0;
 
-                    <div className="arcana-card__footer">
-                      <div className="arcana-card__kicker">
-                        <span>{card.category}</span>
-                        <span className="arcana-card__loc">{card.location}</span>
+                return (
+                  <div
+                    key={card.id}
+                    className={`arcana-card arcana-card--offset-${offset} ${isActive ? "arcana-card--active" : ""}`}
+                    onClick={() => selectCard(idx)}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Select ${card.title}`}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        selectCard(idx);
+                      }
+                    }}
+                  >
+                    <div className="arcana-card__inner">
+                      <div className="arcana-card__header">
+                        <div className="arcana-card__emblem-left" title={`Card ${card.index}`}>
+                          <span className="arcana-emblem-text">{card.index}</span>
+                        </div>
+                        <div className="arcana-card__gem-center">
+                          <Sparkles size={14} aria-hidden="true" />
+                        </div>
+                        <div className="arcana-card__emblem-right">
+                          <MapPin size={11} aria-hidden="true" />
+                          <span>{card.badgeText}</span>
+                        </div>
                       </div>
-                      <h3 className="arcana-card__title">{card.title}</h3>
-                      <p className="arcana-card__subtitle">{card.subtitle}</p>
 
-                      <div className="arcana-card__cta-row">
-                        <Link href={card.ctaLink} className="arcana-card__btn">
-                          <span>Explore Service</span>
-                          <ArrowUpRight size={15} aria-hidden="true" />
-                        </Link>
+                      <div className="arcana-card__visual">
+                        <div className="arcana-card__halo" aria-hidden="true" />
+                        <div className="arcana-card__photo-frame">
+                          <Image
+                            src={card.image}
+                            alt={card.title}
+                            fill
+                            sizes="(max-width: 768px) 300px, 380px"
+                            priority={idx === 0}
+                            className="arcana-card__img"
+                          />
+                        </div>
+                        <div className="arcana-card__shine" aria-hidden="true" />
+                      </div>
+
+                      <div className="arcana-card__footer">
+                        <div className="arcana-card__kicker">
+                          <span>{card.category}</span>
+                          <span className="arcana-card__loc">{card.location}</span>
+                        </div>
+                        <h3 className="arcana-card__title">{card.title}</h3>
+                        <p className="arcana-card__subtitle">{card.subtitle}</p>
+
+                        <div className="arcana-card__cta-row">
+                          <Link href={card.ctaLink} className="arcana-card__btn">
+                            <span>Explore Service</span>
+                            <ArrowUpRight size={15} aria-hidden="true" />
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="arcana-wheel-controls">
-            <button
-              type="button"
-              className="arcana-arrow-btn"
-              onClick={goToPrev}
-              aria-label="Previous card in wheel"
-            >
-              <ChevronLeft size={18} aria-hidden="true" />
-            </button>
-
-            <div className="arcana-wheel-dots">
-              {HERO_CARDS.map((card, idx) => (
-                <button
-                  key={card.id}
-                  type="button"
-                  className={`arcana-dot ${idx === activeIndex ? "arcana-dot--active" : ""}`}
-                  onClick={() => selectCard(idx)}
-                  aria-label={`Go to card ${idx + 1}: ${card.category}`}
-                />
-              ))}
+                );
+              })}
             </div>
 
-            <button
-              type="button"
-              className="arcana-arrow-btn"
-              onClick={goToNext}
-              aria-label="Next card in wheel"
-            >
-              <ChevronRight size={18} aria-hidden="true" />
-            </button>
-          </div>
+            <div className="arcana-wheel-controls">
+              <button
+                type="button"
+                className="arcana-arrow-btn"
+                onClick={goToPrev}
+                aria-label="Previous card in wheel"
+              >
+                <ChevronLeft size={18} aria-hidden="true" />
+              </button>
 
-          <p className="arcana-wheel-hint">
-            Scroll or swipe to rotate occasion wheel
-          </p>
+              <div className="arcana-wheel-dots">
+                {HERO_CARDS.map((card, idx) => (
+                  <button
+                    key={card.id}
+                    type="button"
+                    className={`arcana-dot ${idx === activeIndex ? "arcana-dot--active" : ""}`}
+                    onClick={() => selectCard(idx)}
+                    aria-label={`Go to card ${idx + 1}: ${card.category}`}
+                  />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                className="arcana-arrow-btn"
+                onClick={goToNext}
+                aria-label="Next card in wheel"
+              >
+                <ChevronRight size={18} aria-hidden="true" />
+              </button>
+            </div>
+
+            <p className="arcana-wheel-hint">
+              Scroll down to rotate cards // Next section after card 04
+            </p>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
